@@ -26,6 +26,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 
+from pickle import FALSE
+
+from arabfonts.settings.dev import ALLOWED_HOSTS, DEBUG
+
+
+from django.core.management.utils import get_random_secret_key
+
+
+SECRET_KEY = 'django-insecure-(w4!+4bfxa5%)esio)egs0*ybll_lah4h1-z(4c5+g$vms00t@'
+# SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+DEBUG = False
+# DEBUG = os.getenv("DEBUG", "False") == "True"
+# ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ['arabicfonts.herokuapp.com', '127.0.0.1' ]
+# DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 # Application definition
 
@@ -126,12 +141,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
+
 
 STATICFILES_DIR = {
     os.path.join(BASE_DIR , "public/static")
